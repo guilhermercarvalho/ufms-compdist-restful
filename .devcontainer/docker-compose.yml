@@ -2,12 +2,17 @@ version: '3'
 
 services:
   app:
+    container_name: app
     build: 
       context: .
       dockerfile: Dockerfile
       args:
-        # [Choice] Node.js version: 14, 12, 10
-        VARIANT: 14
+        # [Choice] Java version: 11, 14
+        VARIANT: 11
+        INSTALL_MAVEN: "true"
+        INSTALL_GRADLE: "false"
+        INSTALL_NODE: "true"
+        NODE_VERSION: "lts/*"
         # On Linux, you may need to update USER_UID and USER_GID below if not your local UID is not 1000.
         USER_UID: 1000
         USER_GID: 1000
@@ -28,6 +33,7 @@ services:
     # (Adding the "ports" property to this file will not forward from a Codespace.)
 
   db:
+    container_name: app-db
     image: postgres:latest
     restart: unless-stopped
     volumes:
