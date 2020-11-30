@@ -8,7 +8,7 @@ Desenvolver uma aplicação RESTful integrada com um banco cujo os dados foram f
 
 ## Tecnologias Utilizadas
 
- 1. Backend: [NodeJS](https://nodejs.org/en/)
+ 1. Backend: [Java](https://openjdk.java.net/)
  2. Database: [PostgreSQL](https://www.postgresql.org/)
  3. Encapsulamento: [Docker](https://www.docker.com/)
  
