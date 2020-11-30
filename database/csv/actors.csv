@@ -1,0 +1,385 @@
+|id| |name| |birth_date|
+|0| |Fred Willard| |1939-09-18|
+|1| |Talia Shire| |1946-04-25|
+|2| |Victor Mature| |1913-01-29|
+|3| |Al Pacino| |1940-04-25|
+|4| |Izabella Scorupco| |1970-06-04|
+|5| |Santamaria| |1974-07-22|
+|6| |David Ogden Stiers| |1942-10-31|
+|7| |Jeremy Irons| |1948-09-19|
+|8| |Seth Meyers| |1973-12-28|
+|9| |Michal Zebrowski| |1972-06-17|
+|10| |Colm Feore| |1958-08-22|
+|11| |Paul Newman| |1925-01-26|
+|12| |Ray Winstone| |1957-02-19|
+|13| |Nakamura Shidō II| |1972-09-14|
+|14| |Jim Broadbent| |1949-05-24|
+|15| |José Sacristán| |1937-09-27|
+|16| |Freddie Highmore| |1992-02-14|
+|17| |Alien Sun| |1974-09-11|
+|18| |Walter Cartier| |1922-03-29|
+|19| |Edith Storey| |1892-03-18|
+|20| |Michael Rooker| |1955-04-06|
+|21| |Ewan McGregor| |1971-03-31|
+|22| |Sean Bean| |1959-04-17|
+|23| |Claudia Cardinale| |1938-04-15|
+|24| |Gary Lockwood| |1937-02-11|
+|25| |Alexander Granach| |1893-04-18|
+|26| |Emilia Fox| |1974-07-31|
+|27| |Lil Dagover| |1887-09-30|
+|28| |Hilary Swank| |1974-07-30|
+|29| |Glynis Johns| |1923-10-05|
+|30| |Forest Whitaker| |1961-07-15|
+|31| |Nicole Mary Kidman| |1967-06-20|
+|32| |James Cromwell| |1940-01-27|
+|33| |Rutger Hauer| |1944-01-23|
+|34| |Dame Judi Dench| |1934-12-09|
+|35| |Amanda Seyfried| |1985-12-03|
+|36| |George Carlin| |1937-05-12|
+|37| |Antonio Gasalla| |1941-03-09|
+|38| |William Fichtner| |1956-11-27|
+|39| |Greta Scacchi| |1960-02-18|
+|40| || ||
+|41| || ||
+|42| |Ingrid Rubio| |1975-08-02|
+|43| |Tim Robbins| |1958-10-16|
+|44| |Julie Andrews| |1935-10-01|
+|45| |Ryō Kase| |1974-11-09|
+|46| |塚本晋也| |1960-01-01|
+|47| |Susana Campos| |1937-09-29|
+|48| |Claire Forlani| |1972-07-01|
+|49| |Stephen Rea| |1946-10-31|
+|50| |Gian Maria Volonté| |1933-04-09|
+|51| |Skandar Keynes| |1991-09-05|
+|52| |Hedy Burress| |1973-10-03|
+|53| |Sir Michael Redgrave| |1908-03-20|
+|54| |Virginia Cherrill| |1908-04-12|
+|55| |David Morse| |1953-10-11|
+|56| |Don McKellar| |1963-08-17|
+|57| |Kevin McDonald| |1961-05-16|
+|58| |Michael Wallis| |1945-10-07|
+|59| |Laurence Fishburne| |1961-07-30|
+|60| |Owen Cunningham Wilson| |1968-11-18|
+|61| |Montgomery Clift| |1920-10-17|
+|62| |Alfred C. Abadie| |1878-12-09|
+|63| |Peter Lorre| |1904-06-26|
+|64| |Famke Janssen| |1965-11-05|
+|65| |Brendan Fraser| |1968-12-03|
+|66| || ||
+|67| |John Leguizamo| |1964-07-22|
+|68| |Debbie Reynolds| |1932-04-01|
+|69| |Kevin Norwood Bacon| |1958-07-08|
+|70| |Dickie Moore| |1925-09-12|
+|71| |Jason Scott Lee| |1966-11-19|
+|72| |Daniel Bruhl| |1978-06-16|
+|73| |Tom Hanks| |1956-07-09|
+|74| |Ken Watanabe| |1959-10-21|
+|75| |Gene Kelly| |1912-08-23|
+|76| |Richard Gere| |1949-08-31|
+|77| |William Redfield| |1927-01-26|
+|78| |Arnold Schwarzenegger| |1947-07-30|
+|79| |Dan Hedaya| |1940-07-24|
+|80| |Padraic Delaney| |1977-11-06|
+|81| |Cheech Marin| |1946-07-13|
+|82| |Jenifer Lewis| |1957-01-25|
+|83| || ||
+|84| |Lee Arenberg| |1962-07-18|
+|85| |Shia Saide LaBeouf| |1986-06-11|
+|86| |Jayma Mays| |1979-07-16|
+|87| |Tim Allen| |1953-06-13|
+|88| |John Morris| |1984-10-02|
+|89| |William Stage Boyd| |1889-12-28|
+|90| || ||
+|91| |Michael Clarke Duncan| |1957-12-10|
+|92| |Mark Strong| |1963-08-30|
+|93| |Marianna Hill| |1941-02-09|
+|94| |Tony Roberts| |1939-10-22|
+|95| |Liam Cunningham| |1961-06-02|
+|96| |Tommy Lee Jones| |1946-09-15|
+|97| |Lauren Bacall| |1924-09-16|
+|98| |Bill Murray| |1950-09-21|
+|99| |Larry the Cable Guy| |1963-02-17|
+|100| || ||
+|101| |Rueda| |1965-03-16|
+|102| || ||
+|103| || ||
+|104| |F. Murray Abraham| |1939-10-24|
+|105| |M. Emmet Walsh| |1935-03-22|
+|106| |Tom Atkins| |1935-11-13|
+|107| || ||
+|108| |Julia Roberts| |1967-10-28|
+|109| |Peter Sellers| |1925-09-08|
+|110| |Jack Nicholson| |1937-04-22|
+|111| |Jean Hagen| |1923-08-03|
+|112| |James Stewart| |1908-05-20|
+|113| |Diane Keaton| |1946-01-05|
+|114| |Ward Bond| |1903-04-09|
+|115| |Clayton Watson| |1977-03-23|
+|116| || ||
+|117| |Michael Keaton| |1951-09-05|
+|118| || ||
+|119| |Sissy Spacek| |1949-12-25|
+|120| |JoE Gilgun| |1984-03-09|
+|121| |Jason Flemying| |1966-09-25|
+|122| |Samuel Leroy Jackson| |1948-12-21|
+|123| |Michael V. Gazzo| |1923-04-05|
+|124| |Bryce Dallas Howard| |1981-03-02|
+|125| |Jean-Marc Barr| |1960-09-27|
+|126| |Jared Leto| |1971-12-26|
+|127| |Daveigh Chase| |1990-07-24|
+|128| |Wolfgang Heinz| |1900-04-18|
+|129| |Edward Hardwicke| |1932-08-07|
+|130| |Adrien Brody| |1973-04-14|
+|131| |Nao Ōmori| |1972-02-19|
+|132| |Jacek Koman| |1956-08-15|
+|133| |Morgana King| |1930-06-04|
+|134| |Mira Sorvino| |1967-09-28|
+|135| |Jon Heder| |1977-10-26|
+|136| |Kazunari Ninomiya| |1983-06-17|
+|137| |Anna Magnani| |1908-03-07|
+|138| || ||
+|139| |Dawn French| |1957-10-11|
+|140| |Kristen Wilson| |1969-09-04|
+|141| |Brendan Gleeson| |1955-03-29|
+|142| |Annie Potts| |1952-10-28|
+|143| |Leslie Banks| |1890-06-09|
+|144| |Mario Cantone| |1959-12-09|
+|145| |Christine Baranski| |1952-05-02|
+|146| |Stellan Skarsgard| |1951-06-13|
+|147| |Shelley Duvall| |1949-07-07|
+|148| |Marcello Pagliero| |1907-01-15|
+|149| |Carlo Cecchi| |1939-01-25|
+|150| |James Arnold Taylor| |1969-07-22|
+|151| |Leonardo Sbaraglia| |1970-06-30|
+|152| || ||
+|153| |Sylvia Syms, OBE| |1934-01-06|
+|154| |CBE| |1960-09-10|
+|155| |James Woods| |1947-04-18|
+|156| |Millard Mitchell| |1903-08-14|
+|157| |Diedrich Bader| |1966-12-24|
+|158| |Marlon Wayans| |1972-07-23|
+|159| |David Strathairn| |1949-01-26|
+|160| |Will Sampson| |1933-09-27|
+|161| |Katrin Saß| |1956-10-23|
+|162| |Jasmine Trinca| |1981-04-24|
+|163| |Tia Carrere| |1967-01-02|
+|164| || ||
+|165| |Ving Rhames| |1959-05-12|
+|166| |Caroline O'Connor| |1962-09-02|
+|167| |Marcia Gay Harden| |1959-08-14|
+|168| || ||
+|169| |Jane Fonda| |1937-12-21|
+|170| |Adam Campbell| |1980-11-07|
+|171| |Tilda Swinton| |1960-11-05|
+|172| |Harry Myers| |1882-09-05|
+|173| |Marlon Brando| |1924-04-03|
+|174| |William Sylvester| |1922-01-31|
+|175| |Sophie Marceau| |1966-11-17|
+|176| |Emil Jannings| |1884-07-23|
+|177| |Najwa Nimri| |1972-02-14|
+|178| |Paul Simon| |1941-10-13|
+|179| |Mary-Louise Parker| |1964-08-02|
+|180| |Bonnie Hunt| |1961-09-22|
+|181| |Richard Roxburgh| |1962-01-23|
+|182| |David Niven| |1910-03-01|
+|183| |Zooey Deschanel| |1980-01-17|
+|184| |James Caan| |1940-03-26|
+|185| |John Ratzenberger| |1947-04-06|
+|186| |Matthew Garber| |1956-03-25|
+|187| |Justus D. Barnes| |1862-10-02|
+|188| |Irving Pichel| |1891-06-24|
+|189| |Manuela Velasco| |1975-10-23|
+|190| |Anita Briem| |1982-05-29|
+|191| |Rachel McAdams| |1976-11-17|
+|192| |Cillian Murphy| |1976-05-25|
+|193| |Zoe McLellan| |1974-11-06|
+|194| |Javier Bardem| |1969-03-01|
+|195| |Silvio Orlando| |1957-06-30|
+|196| |Christopher Olsen| |1946-09-19|
+|197| |Downey, Robert, Jr.| |1965-04-04|
+|198| |Elaine Cassidy| |1979-12-31|
+|199| |Edna Best| |1900-03-03|
+|200| |Christopher Walken| |1943-03-31|
+|201| |Pamela Adlon| |1966-07-09|
+|202| |Pierce Brosnan| |1953-05-16|
+|203| |Werner Krauss| |1884-06-23|
+|204| |Donald O'Connor| |1925-08-28|
+|205| |Keir Dullea| |1936-05-30|
+|206| || ||
+|207| |Danny Devito| |1944-11-17|
+|208| |Gustav von Wangenheim| |1895-02-18|
+|209| |The Right Honourable| |1907-09-27|
+|210| || ||
+|211| |Leonor Watling| |1975-07-28|
+|212| |Rosamund Hanson| |1989-09-24|
+|213| |Laurie Metcalf| |1955-06-16|
+|214| |John Wood| |1930-01-01|
+|215| |Jaye Davidson| |1968-03-21|
+|216| |China Zorrilla| |1922-03-14|
+|217| |Stefano Accorsi| |1971-03-02|
+|218| |Alex Jennings| |1957-05-10|
+|219| |Robert DeNiro| |1943-08-17|
+|220| |Karen Dotrice| |1955-11-09|
+|221| |Anna Popplewell| |1988-12-16|
+|222| |Seth Rogen| |1982-04-15|
+|223| |Josh Hutcherson| |1992-10-12|
+|224| |Thora Birch| |1982-03-11|
+|225| |Victor McLaglen| |1886-12-10|
+|226| |Lola Duenas| |1971-10-06|
+|227| |Laura Linney| |1964-02-05|
+|228| |Stephen Graham| |1973-03-08|
+|229| |Rachael Leigh Cook| |1979-10-04|
+|230| |Patrick McGoohan| |1928-03-19|
+|231| |David Tomlinson| |1917-05-07|
+|232| |Alan Mowbray| |1896-08-18|
+|233| |Maureen O'Hara| |1920-08-17|
+|234| |Robert Wagner| |1930-02-10|
+|235| |Helen McCrory| |1968-08-17|
+|236| |Richard S. Castellano| |1933-09-04|
+|237| |Louise Fletcher| |1934-07-22|
+|238| |Kalpen Modi| |1977-04-23|
+|239| |Sylvia Chang| |1953-07-22|
+|240| |Colleen Dewhurst| |1924-06-03|
+|241| |Christopher Eccleston| |1964-02-16|
+|242| |Bruce Payne| |1958-11-22|
+|243| |Frank Finlay| |1926-08-06|
+|244| |Tristan Ulloa| |1970-05-06|
+|245| |Eduardo Noriega| |1973-08-01|
+|246| |Jodie Foster| |1962-11-19|
+|247| |Margaret Lockwood| |1916-09-15|
+|248| |Don Rickles| |1926-05-08|
+|249| |Carol Kane| |1952-06-18|
+|250| |Matthew Lawrence| |1980-02-11|
+|251| |Faune A. Chambers| |1976-09-23|
+|252| |Ryan Phillippe| |1974-09-10|
+|253| |Michael Biehn| |1956-07-31|
+|254| || ||
+|255| |Mitchell Ryan| |1928-01-11|
+|256| |Eric Christian Olsen| |1977-05-31|
+|257| |Max Schreck| |1879-09-06|
+|258| || ||
+|259| |DBE| |1929-10-28|
+|260| |Wallace Shawn| |1943-11-12|
+|261| |Alakina Mann| |1990-08-01|
+|262| |Helen Mirren| |1945-07-26|
+|263| |Doris Lloyd| |1896-07-03|
+|264| || ||
+|265| |Christopher Lloyd| |1938-10-22|
+|266| |Katherine Helmond| |1928-07-05|
+|267| |Angela Bassett| |1958-08-16|
+|268| |Dame May Whitty| |1865-06-19|
+|269| |Walter Brennan| |1894-07-25|
+|270| |Kevin Costner| |1955-01-18|
+|271| |Crispin Glover| |1964-04-20|
+|272| |Chulpan Khamatova| |1975-10-01|
+|273| |Kevin Michael Richardson| |1964-10-25|
+|274| |Roger Allam| |1953-10-26|
+|275| |Sarah Bolger| |1991-02-28|
+|276| |Nova Pilbeam| |1919-11-15|
+|277| |Matthew Broderick| |1962-03-21|
+|278| |Catherine McCormack| |1972-04-03|
+|279| |Scarlett Johansson| |1984-11-22|
+|280| |Laura Morante| |1956-08-21|
+|281| |Angus Macfadyen| |1963-09-21|
+|282| |Danny Glover| |1946-07-22|
+|283| |Alexander Beyer| |1973-06-24|
+|284| |Paul Lukas| |1891-05-26|
+|285| |Penélope Cruz| |1974-04-28|
+|286| |Gary Oldman| |1958-03-21|
+|287| || ||
+|288| |Michelle Pfeiffer| |1958-04-29|
+|289| |Capucine| |1928-01-06|
+|290| |Tom Skerritt| |1933-08-25|
+|291| |Barney Clark| |1993-06-25|
+|292| |Richard Petty| |1937-07-02|
+|293| |Ana Torrent| |1966-07-12|
+|294| |Maureen Lipman| |1946-05-10|
+|295| |Andrew Shim| |1983-08-18|
+|296| |Paul Dooley| |1928-02-22|
+|297| |Conrad Veidt| |1893-01-22|
+|298| |Tadanobu Asano| |1973-11-27|
+|299| |Greta Schröder| |1891-09-07|
+|300| |Gary Busey| |1944-06-29|
+|301| |Thomas Kretschmann| |1962-09-08|
+|302| |Michael Rapaport| |1970-03-20|
+|303| |Henry Fonda| |1905-05-16|
+|304| |John Cazale| |1935-08-12|
+|305| |Nick Nolte| |1941-02-08|
+|306| |Erik von Detten| |1982-10-03|
+|307| |Georgie Henley| |1995-07-09|
+|308| || ||
+|309| |Frances McDormand| |1957-06-23|
+|310| |Eric Sykes| |1923-05-04|
+|311| |Willem Dafoe| |1955-07-22|
+|312| |Natalie Portman| |1981-06-09|
+|313| |Jay O. Sanders| |1953-04-16|
+|314| |Linda Darnell| |1923-10-16|
+|315| |CBE| |1966-05-26|
+|316| |Harry Eden| |1990-03-01|
+|317| |CBE| |1943-12-31|
+|318| |Martin Short| |1950-03-26|
+|319| |Dominic Cooper| |1978-06-02|
+|320| |Robert Redford| |1936-08-18|
+|321| |Betiana Blum| |1939-07-23|
+|322| |Florence Lee| |1888-03-12|
+|323| |Thomas Turgoose| |1992-02-11|
+|324| |Alberto Jiménez| |1969-04-08|
+|325| |Ángela Molina| |1955-10-05|
+|326| |Anna Faris| |1976-11-29|
+|327| |Tony Shalhoub| |1953-10-09|
+|328| |John Getz| |1946-10-15|
+|329| || ||
+|330| |Tsuyoshi Ihara| |1963-11-06|
+|331| |Jim Varney| |1949-06-15|
+|332| |Dustin Hoffman| |1937-08-08|
+|333| |Julie Walters| |1950-02-22|
+|334| |Simone Mareuil| |1903-08-25|
+|335| |Sean Penn| |1960-08-17|
+|336| || ||
+|337| |Guido Quaroni| |1967-11-09|
+|338| |Luis Brandoni| |1940-04-18|
+|339| |Brad Dourif| |1950-03-18|
+|340| || ||
+|341| |Monique Mercure| |1930-11-14|
+|342| |Brenda De Banzie| |1909-07-28|
+|343| || ||
+|344| |Rebecca Hall| |1982-05-19|
+|345| || ||
+|346| || ||
+|347| |Frank Vosper| |1899-12-15|
+|348| |Jane Alexander| |1939-10-28|
+|349| |Lon Chaney| |1883-04-01|
+|350| |Meryl Streep| |1949-06-22|
+|351| |Jeff Bridges| |1949-12-04|
+|352| |Hugo Weaving| |1960-04-04|
+|353| |Lee Strasberg| |1901-11-17|
+|354| |Miranda Richardson| |1958-03-03|
+|355| |Hillary Brooke| |1914-09-08|
+|356| |Justin Henry| |1971-05-25|
+|357| |Matthew McConaughey| |1969-11-04|
+|358| |Udo Kier| |1944-10-14|
+|359| |James McAvoy| |1979-04-21|
+|360| |Eusebio Poncela| |1947-09-15|
+|361| |Robert Duvall| |1931-01-05|
+|362| |Aldo Fabrizi| |1905-11-01|
+|363| || ||
+|364| |OBE| |1969-02-05|
+|365| |Mel Gibson| |1956-01-03|
+|366| |Liam Neeson| |1952-06-07|
+|367| |Doris Day| |1924-04-03|
+|368| |William Moseley| |1987-04-27|
+|369| |Andrew McCarthy| |1962-11-29|
+|370| |Hans Heinrich von Twardowski| |1898-05-05|
+|371| |Broncho Billy Anderson| |1880-03-21|
+|372| |Darrell Hammond| |1955-10-08|
+|373| |John Wayne| |1907-05-26|
+|374| |Barry Fitzgerald| |1888-03-10|
+|375| |Fionnula Flanagan| |1941-12-10|
+|376| |Terrence Howard| |1969-03-11|
+|377| |Dick Van Dyke| |1925-12-13|
+|378| |Gwyneth Paltrow| |1972-09-27|
+|379| |Linda Hamilton| |1956-09-26|
+|380| |John Hurt| |1940-01-22|
+|381| |Justin Whalin| |1974-09-06|
+|382| |Jackie Coogan| |1914-10-26|
+|383| |Samm-Art Williams| |1946-01-20|
