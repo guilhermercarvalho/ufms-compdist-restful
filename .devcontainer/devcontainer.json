@@ -12,7 +12,7 @@
 			"name": "Container database",
 			"driver": "PostgreSQL",
 			"previewLimit": 50,
-			"server": "localhost",
+			"server": "db",
 			"port": 5432,
 			"database": "postgres",
 			"username": "postgres",
@@ -22,7 +22,9 @@
 
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
-		"vscjava.vscode-java-pack"
+		"vscjava.vscode-java-pack",
+		"mtxr.sqltools",
+		"mtxr.sqltools-driver-pg",
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
