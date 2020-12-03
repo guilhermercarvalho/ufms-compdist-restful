@@ -1,9 +1,9 @@
 package api;
 
-import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -21,14 +21,15 @@ public class TesteSelect {
             // Connect to DB
             Connection connection = DriverManager.getConnection(JDBCURL, USER, PWD);
             
-            // Create Statement
-            Statement stmt = connection.createStatement();
+            String query = "SELECT * FROM actor WHERE name LIKE ? and birth_date=?";
             
-            // Set query
-            String query = "SELECT * FROM actor";
+            PreparedStatement stmt = connection.prepareStatement(query);
             
             // Exec query and store result
-            ResultSet result = stmt.executeQuery(query);
+            stmt.setString(1, "A%");
+            stmt.setDate(2, Date.valueOf("1974-09-11"));
+
+            ResultSet result = stmt.executeQuery();
             
             // Show result
             int rowCount = 0;

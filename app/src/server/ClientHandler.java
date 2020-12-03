@@ -16,8 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import dao.*;
-import model.*;
+import org.json.JSONException;
+
+import api.Api;
 
 /**
  * The ClientHandler represents de socket connection with the client
@@ -86,30 +87,36 @@ public class ClientHandler implements Runnable {
                         version, host, headers.toString());
                 System.out.println(accessLog);
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                if (path.equals("/actors")) {
-                    ActorDAO actorDao = new ActorDAO();
-                    List<Actor> actors = actorDao.getAll();
-                    ByteArrayOutputStream content = new ByteArrayOutputStream();
-                    
-                    content.write("{".getBytes());
-                    for (Actor actor : actors) {
-                        content.writeBytes(("{\"Name\":\"" + actor.getName() + "\",").getBytes());
-                        content.writeBytes(("\"Data de Nascimento\":\"" + actor.getBirth_date() + "\"},").getBytes());
-                    }
-                    content.write("}\r\n".getBytes());
-
-                    sendResponse("200 Document Follows", "application/json; charset=utf-8", content.toByteArray());
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    
-                } else if (path.equals("/movies")) {
-                    MovieDAO movieDao = new MovieDAO();
-                    
-                    List<Movie> movies = movieDao.getAll();
-                    
-                    for (Movie movie : movies) {
-                        System.out.println("Nome: " + movie.getTitle());
-                        System.out.println("Sinopse: " + movie.getSynopsis());
+                // API Functionalities
+                if (path.contains("/actors") || path.contains("/movies")) {
+                    Api api = new Api();
+                    switch (method) {
+                        case "GET":
+                            if (path.equals("/actors")) {
+                                String json = api.getActors();
+                                sendResponse("200 Document Follows", "application/json; charset=utf-8",
+                                        json.getBytes());
+                            } else if (path.matches("/actors/\\d*")) {
+                                int id_actor = Integer.parseInt(path.split("/actors/")[1]);
+                                String json = api.getActors(id_actor);
+                                sendResponse("200 Document Follows", "application/json; charset=utf-8",
+                                        json.getBytes());
+                            } else if (path.equals("/movies")) {
+                                String json = api.getMovies();
+                                sendResponse("200 Document Follows", "application/json; charset=utf-8",
+                                        json.getBytes());
+                            } else if (path.matches("/movies/\\d*")) {
+                                int id_movie = Integer.parseInt(path.split("/movies/")[1]);
+                                String json = api.getMovies(id_movie);
+                                sendResponse("200 Document Follows", "application/json; charset=utf-8",
+                                        json.getBytes());
+                            }
+                            break;
+                        case "POST":
+                            byte[] notFoundContet = "Invalid method".getBytes();
+                            sendResponse("405 Method Not Allowed", "text/plain", notFoundContet);
+                        default:
+                            break;
                     }
                 }
 
@@ -122,12 +129,12 @@ public class ClientHandler implements Runnable {
 
                     // get file to exec and query
                     ProcessBuilder pb;
-                    if(fileName.getPath().contains("?"))  {
+                    if (fileName.getPath().contains("?")) {
                         String fileExec = fileName.getPath().split("\\?")[0];
                         String queryString = fileName.getPath().split("\\?")[1];
-                        
-                         pb = new ProcessBuilder(fileExec);
-                        
+
+                        pb = new ProcessBuilder(fileExec);
+
                         // add query to environment
                         Map<String, String> env = pb.environment();
                         env.put("QUERY_STRING", queryString);
@@ -194,6 +201,8 @@ public class ClientHandler implements Runnable {
             } catch (Exception e) {
                 System.err.println(e.toString());
             }
+        } catch (JSONException e) {
+            System.err.println(e.toString());
         } catch (Exception e) {
             System.err.println(e.toString());
         } finally {
