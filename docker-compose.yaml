@@ -1,0 +1,46 @@
+version: '3'
+
+networks:
+  network-app:
+    name: app-net
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.20.0.0/29
+
+
+# volumes:
+#   postgres-data:
+
+services:
+  app:
+    container_name: app
+    build:
+      context: .
+      dockerfile: Dockerfile.app
+    image: compdistapp:initial
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+    networks:
+      network-app:
+        ipv4_address: 172.20.0.2
+    restart: unless-stopped
+
+  db:
+    container_name: app-db
+    build:
+      context: .
+      dockerfile: Dockerfile.db
+    image: compdistappdb:initial
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    # volumes:
+    #   - postgres-data:/var/lib/postgresql/data
+    networks:
+      network-app:
+        ipv4_address: 172.20.0.3
+    restart: unless-stopped
