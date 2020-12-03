@@ -16,6 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import dao.*;
+import model.*;
+
 /**
  * The ClientHandler represents de socket connection with the client
  * 
@@ -82,6 +85,33 @@ public class ClientHandler implements Runnable {
                 String accessLog = String.format("method %s, path %s, version %s, host %s, headers %s", method, path,
                         version, host, headers.toString());
                 System.out.println(accessLog);
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                if (path.equals("/actors")) {
+                    ActorDAO actorDao = new ActorDAO();
+                    List<Actor> actors = actorDao.getAll();
+                    ByteArrayOutputStream content = new ByteArrayOutputStream();
+                    
+                    content.write("{".getBytes());
+                    for (Actor actor : actors) {
+                        content.writeBytes(("{\"Name\":\"" + actor.getName() + "\",").getBytes());
+                        content.writeBytes(("\"Data de Nascimento\":\"" + actor.getBirth_date() + "\"},").getBytes());
+                    }
+                    content.write("}\r\n".getBytes());
+
+                    sendResponse("200 Document Follows", "application/json; charset=utf-8", content.toByteArray());
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    
+                } else if (path.equals("/movies")) {
+                    MovieDAO movieDao = new MovieDAO();
+                    
+                    List<Movie> movies = movieDao.getAll();
+                    
+                    for (Movie movie : movies) {
+                        System.out.println("Nome: " + movie.getTitle());
+                        System.out.println("Sinopse: " + movie.getSynopsis());
+                    }
+                }
 
                 // convert path into avaliable file in the sistem
                 Path filePath = getFilePath(path);

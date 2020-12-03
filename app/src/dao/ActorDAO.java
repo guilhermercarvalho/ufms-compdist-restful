@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import db.DatabaseConnection;
-import models.Actor;
+import model.Actor;
 
 public class ActorDAO {
     private Connection connection;

@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import db.DatabaseConnection;
-import models.MovieActor;
+import model.MovieActor;
 
 public class MovieActorDAO {
     private Connection connection;
