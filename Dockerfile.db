@@ -1,2 +1,4 @@
 FROM postgres 
+
+# Execute sql in database
 COPY ./database/db.sql /docker-entrypoint-initdb.d/
