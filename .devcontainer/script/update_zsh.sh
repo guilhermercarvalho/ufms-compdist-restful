@@ -28,3 +28,10 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 # Tell Antigen that you're done.
 antigen apply
 EOF
+
+cat << EOF >> $HOME/.zshrc
+
+alias cjava="javac -cp /workspace/app/lib/json.jar:/workspace/app/lib/postgresql.jar:. -d /workspace/app/bin \$(find /workspace/app/src/* | grep .java)"
+alias ejava="java -cp .:/workspace/app/lib/postgresql.jar:/workspace/app/lib/json.jar: server.Server -t"
+EOF
+
