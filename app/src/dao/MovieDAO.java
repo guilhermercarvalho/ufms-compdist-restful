@@ -44,7 +44,7 @@ public class MovieDAO {
             PreparedStatement stmt = connection.prepareStatement(sql);
 
             stmt.setString(1, movie.getTitle());
-            stmt.setString(1, movie.getSynopsis());
+            stmt.setString(2, movie.getSynopsis());
             stmt.setInt(3, movie.getId());
 
             stmt.execute();

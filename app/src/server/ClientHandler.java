@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import api.Api;
 
@@ -57,14 +58,21 @@ public class ClientHandler implements Runnable {
         try {
             while (true) {
                 StringBuilder reqBuilder = new StringBuilder();
-                String line;
+                StringBuilder payload = new StringBuilder();
+                String line = null;
 
-                // read input client
-                while (!(line = in.readLine()).isBlank()) {
+                while (!(line = in.readLine()).isEmpty()) {
                     reqBuilder.append(line + "\r\n");
                 }
 
+                while (in.ready()) {
+                    payload.append((char) in.read());
+                }
+
                 String req = reqBuilder.toString();
+                String body = payload.toString();
+                System.out.println(req);
+                System.out.println(body);
 
                 // serialize input
                 String[] reqsLines = req.split("\r\n");
@@ -113,8 +121,42 @@ public class ClientHandler implements Runnable {
                             }
                             break;
                         case "POST":
-                            byte[] notFoundContet = "Invalid method".getBytes();
-                            sendResponse("405 Method Not Allowed", "text/plain", notFoundContet);
+                            if (path.equals("/actors")) {
+                                String json = api.insertActor(body);
+                                sendResponse("200 Document Follows", "application/json; charset=utf-8",
+                                        json.getBytes());
+                            } else if (path.equals("/movies")) {
+                                String json = api.insertMovie(body);
+                                sendResponse("200 Document Follows", "application/json; charset=utf-8",
+                                        json.getBytes());
+                            }
+                            break;
+                        case "PUT":
+                            if (path.matches("/actors/\\d*")) {
+                                int id_actor = Integer.parseInt(path.split("/actors/")[1]);
+                                String json = api.updateActor(id_actor, body);
+                                sendResponse("200 Document Follows", "application/json; charset=utf-8",
+                                        json.getBytes());
+                            } else if (path.matches("/movies/\\d*")) {
+                                int id_movie = Integer.parseInt(path.split("/movies/")[1]);
+                                String json = api.updateMovie(id_movie, body);
+                                sendResponse("200 Document Follows", "application/json; charset=utf-8",
+                                        json.getBytes());
+                            }
+                            break;
+                        case "DELETE":
+                            if (path.matches("/actors/\\d*")) {
+                                int id_actor = Integer.parseInt(path.split("/actors/")[1]);
+                                String json = api.deleteActors(id_actor);
+                                sendResponse("200 Document Follows", "application/json; charset=utf-8",
+                                        json.getBytes());
+                            } else if (path.matches("/movies/\\d*")) {
+                                int id_movie = Integer.parseInt(path.split("/movies/")[1]);
+                                String json = api.deleteMovies(id_movie);
+                                sendResponse("200 Document Follows", "application/json; charset=utf-8",
+                                        json.getBytes());
+                            }
+                            break;
                         default:
                             break;
                     }
@@ -205,6 +247,7 @@ public class ClientHandler implements Runnable {
             System.err.println(e.toString());
         } catch (Exception e) {
             System.err.println(e.toString());
+            e.printStackTrace();
         } finally {
             System.err.println("Closing connection...");
             try {

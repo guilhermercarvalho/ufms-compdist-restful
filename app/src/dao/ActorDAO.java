@@ -39,7 +39,7 @@ public class ActorDAO {
     }
 
     public void update(Actor actor) {
-        String sql = "UPDATE actor SET nome=?, birth_date=? WHERE id=?";
+        String sql = "UPDATE actor SET name=?, birth_date=? WHERE id=?";
 
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
@@ -70,7 +70,6 @@ public class ActorDAO {
     }
 
     public Actor getOne(int id) {
-        System.out.println("ID ATOR: " + id);
         try {
             PreparedStatement stmt = this.connection.prepareStatement("SELECT * FROM actor WHERE id=?");
             stmt.setInt(1, id);
@@ -115,48 +114,16 @@ public class ActorDAO {
         }
     }
 
-    public List<Actor> getCustom(List<String> query) {
+    public List<Actor> getCustom(String name, Date IBirth_date, Date FBirth_date) {
         try {
             List<Actor> actors = new ArrayList<Actor>();
-            String sql = "SELECT * FROM actor WHERE";
-
-            int iName = query.indexOf("name");
-            int iBirth_date = query.indexOf("birth_date");
-
-            boolean bName = false;
-            boolean bBirth_date = false;
-
-            if (iName == -1 && iBirth_date == -1)
-                throw new RuntimeException("Invalid query!");
-
-            if (iName != -1) {
-                bName = true;
-                if (query.get(iName) == "null")
-                    sql += " name IS ? ";
-                else
-                    sql += " name LIKE ? ";
-            }
-
-            if (iName != -1 && iBirth_date != -1)
-                sql += " AND ";
-
-            if (iBirth_date != -1) {
-                bBirth_date = true;
-                sql += " birth_date=? ";
-            }
+            String sql = "SELECT * FROM actor WHERE LIKE ? AND birth_date BETWEEN ? AND ?";
 
             PreparedStatement stmt = this.connection.prepareStatement(sql);
 
-            if (bName && bBirth_date) {
-                stmt.setString(1, "%" + query.get(iName) + "%");
-                stmt.setDate(2, Date.valueOf(query.get(iBirth_date)));
-
-            } else if (bName && !bBirth_date) {
-                stmt.setString(1, "%" + query.get(iName) + "%");
-
-            } else {
-                stmt.setDate(1, Date.valueOf(query.get(iBirth_date)));
-            }
+            stmt.setString(1, name);
+            stmt.setDate(2, IBirth_date);
+            stmt.setDate(3, FBirth_date);
 
             ResultSet result = stmt.executeQuery();
 

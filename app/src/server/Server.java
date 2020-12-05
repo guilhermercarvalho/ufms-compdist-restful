@@ -14,7 +14,7 @@ import java.util.concurrent.Executors;
  * @since 2020-10-25
  */
 public class Server {
-    private static final int MAX_THREADS = 10; // number of threads
+    private static final int MAX_THREADS = 100; // number of threads
     private static ArrayList<ClientHandler> clients = new ArrayList<>(); // list of clients
     private static ExecutorService pool = Executors.newFixedThreadPool(MAX_THREADS); // pool of threads
 
