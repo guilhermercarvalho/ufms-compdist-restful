@@ -16,7 +16,7 @@ RUN apk update && apk upgrade
 RUN apk add wget
 
 # Create dir to store .jar files
-RUN mkdir /usr/src/app/lib
+RUN mkdir -p /usr/src/app/lib
 
 # Download postgresql driver
 RUN wget -O /usr/src/app/lib/postgresql.jar  https://jdbc.postgresql.org/download/postgresql-42.2.18.jar
