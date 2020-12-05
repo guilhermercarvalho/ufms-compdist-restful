@@ -95,7 +95,7 @@ public class ActorDAO {
             List<Actor> actors = new ArrayList<Actor>();
             PreparedStatement stmt = this.connection.prepareStatement("SELECT * FROM actor");
             ResultSet result = stmt.executeQuery();
-
+            
             while (result.next()) {
                 Actor actor = new Actor();
 
@@ -117,7 +117,7 @@ public class ActorDAO {
     public List<Actor> getCustom(String name, Date IBirth_date, Date FBirth_date) {
         try {
             List<Actor> actors = new ArrayList<Actor>();
-            String sql = "SELECT * FROM actor WHERE LIKE ? AND birth_date BETWEEN ? AND ?";
+            String sql = "SELECT * FROM actor WHERE name LIKE ? AND birth_date BETWEEN ? AND ?";
 
             PreparedStatement stmt = this.connection.prepareStatement(sql);
 
