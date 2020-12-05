@@ -71,8 +71,6 @@ public class ClientHandler implements Runnable {
 
                 String req = reqBuilder.toString();
                 String body = payload.toString();
-                System.out.println(req);
-                System.out.println(body);
 
                 // serialize input
                 String[] reqsLines = req.split("\r\n");
@@ -100,8 +98,12 @@ public class ClientHandler implements Runnable {
                     Api api = new Api();
                     switch (method) {
                         case "GET":
-                            if (path.equals("/actors")) {
+                            if (path.equals("/actors") && body.length() == 0) {
                                 String json = api.getActors();
+                                sendResponse("200 Document Follows", "application/json; charset=utf-8",
+                                        json.getBytes());
+                            } else if (path.equals("/actors") && body.length() > 0) {
+                                String json = api.searchActor(body);
                                 sendResponse("200 Document Follows", "application/json; charset=utf-8",
                                         json.getBytes());
                             } else if (path.matches("/actors/\\d*")) {
@@ -109,13 +111,22 @@ public class ClientHandler implements Runnable {
                                 String json = api.getActors(id_actor);
                                 sendResponse("200 Document Follows", "application/json; charset=utf-8",
                                         json.getBytes());
-                            } else if (path.equals("/movies")) {
+                            } else if (path.equals("/movies") && body.length() == 0) {
                                 String json = api.getMovies();
+                                sendResponse("200 Document Follows", "application/json; charset=utf-8",
+                                        json.getBytes());
+                            } else if (path.equals("/movies") && body.length() > 0) {
+                                String json = api.searchMovie(body);
                                 sendResponse("200 Document Follows", "application/json; charset=utf-8",
                                         json.getBytes());
                             } else if (path.matches("/movies/\\d*")) {
                                 int id_movie = Integer.parseInt(path.split("/movies/")[1]);
                                 String json = api.getMovies(id_movie);
+                                sendResponse("200 Document Follows", "application/json; charset=utf-8",
+                                        json.getBytes());
+                            } else if (path.matches("/movies/\\d*/actors")) {
+                                int id_movie = Integer.parseInt(path.split("/movies/")[1].split("/actors")[0]);
+                                String json = api.getMovieActors(id_movie);
                                 sendResponse("200 Document Follows", "application/json; charset=utf-8",
                                         json.getBytes());
                             }
@@ -247,7 +258,6 @@ public class ClientHandler implements Runnable {
             System.err.println(e.toString());
         } catch (Exception e) {
             System.err.println(e.toString());
-            e.printStackTrace();
         } finally {
             System.err.println("Closing connection...");
             try {
