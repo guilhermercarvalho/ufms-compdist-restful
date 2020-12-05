@@ -1,15 +1,18 @@
+DROP TABLE IF EXISTS actor CASCADE;
 CREATE TABLE actor (
   id INTEGER NOT NULL,
   name VARCHAR(255),
   birth_date DATE
 );
 
+DROP TABLE IF EXISTS movie CASCADE;
 CREATE TABLE movie (
   id INTEGER NOT NULL,
   title VARCHAR(255),
   synopsis TEXT
 );
 
+DROP TABLE IF EXISTS movie_actor CASCADE;
 CREATE TABLE movie_actor (
   movieid INTEGER NOT NULL,
   actorid INTEGER NOT NULL
