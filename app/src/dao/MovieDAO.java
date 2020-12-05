@@ -115,47 +115,15 @@ public class MovieDAO {
         }
     }
 
-    public List<Movie> getCustom(List<String> query) {
+    public List<Movie> getCustom(String title, String synopsis) {
         try {
             List<Movie> movies = new ArrayList<Movie>();
-            String sql = "SELECT * FROM movie WHERE";
-
-            int iTitle = query.indexOf("title");
-            int iSynopsis = query.indexOf("synopsis");
-
-            boolean bTitle = false;
-            boolean bSynopsis = false;
-
-            if (iTitle == -1 && iSynopsis == -1)
-                throw new RuntimeException("Invalid query!");
-
-            if (iTitle != -1) {
-                bTitle = true;
-                if (query.get(iTitle) == "null")
-                    sql += " title IS ? ";
-                else
-                    sql += " title LIKE ? ";
-            }
-
-            if (iTitle != -1 && iSynopsis != -1)
-                sql += " AND ";
-
-            if (iSynopsis != -1) {
-                bSynopsis = true;
-                sql += " synopsis=? ";
-            }
+            String sql = "SELECT * FROM movie WHERE title LIKE ? AND synopsis LIKE ?";
 
             PreparedStatement stmt = this.connection.prepareStatement(sql);
 
-            if (bTitle && bSynopsis) {
-                stmt.setString(1, query.get(iTitle));
-                stmt.setString(2, query.get(iSynopsis));
-
-            } else if (bTitle && !bSynopsis) {
-                stmt.setString(1, query.get(iTitle));
-            } else {
-                stmt.setString(1, query.get(iSynopsis));
-            }
+            stmt.setString(1, title);
+            stmt.setString(2, synopsis);
 
             ResultSet result = stmt.executeQuery();
 
