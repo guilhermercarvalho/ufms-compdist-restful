@@ -158,12 +158,12 @@ public class ClientHandler implements Runnable {
                         case "DELETE":
                             if (path.matches("/actors/\\d*")) {
                                 int id_actor = Integer.parseInt(path.split("/actors/")[1]);
-                                String json = api.deleteActors(id_actor);
+                                String json = api.deleteActor(id_actor);
                                 sendResponse("200 Document Follows", "application/json; charset=utf-8",
                                         json.getBytes());
                             } else if (path.matches("/movies/\\d*")) {
                                 int id_movie = Integer.parseInt(path.split("/movies/")[1]);
-                                String json = api.deleteMovies(id_movie);
+                                String json = api.deleteMovie(id_movie);
                                 sendResponse("200 Document Follows", "application/json; charset=utf-8",
                                         json.getBytes());
                             }

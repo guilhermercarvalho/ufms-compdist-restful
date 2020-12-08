@@ -58,7 +58,7 @@ public class Api {
         return result.toString();
     }
 
-    public String deleteActors(int id) {
+    public String deleteActor(int id) {
         ActorDAO actorDao = new ActorDAO();
         Actor actor = actorDao.getOne(id);
 
@@ -254,7 +254,7 @@ public class Api {
         return result.toString();
     }
 
-    public String deleteMovies(int id) {
+    public String deleteMovie(int id) {
         MovieDAO movieDao = new MovieDAO();
         Movie movie = movieDao.getOne(id);
 
