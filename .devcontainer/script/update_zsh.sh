@@ -31,8 +31,8 @@ EOF
 
 cat << EOF >> $HOME/.zshrc
 
-alias cjava="javac -cp /workspace/app/lib/json.jar:/workspace/app/lib/postgresql.jar:. -d /workspace/app/bin \\$(find /workspace/app/src/* | grep .java)"
-alias ejava="cd /workspace/app/bin && java -cp .:/workspace/app/lib/postgresql.jar:/workspace/app/lib/json.jar: server.Server -t && cd -"
+alias cjava="javac -cp \\\$(for i in \\\`ls /workspace/app/lib/*.jar\\\`; do echo -n "\\\$i:"; done). -d /workspace/app/bin \\\$(find /workspace/app/src/* | grep .java)"
+alias ejava="cd /workspace/app/bin && java -cp .:\\\$(for i in \\\`ls /workspace/app/lib/*.jar\\\`; do echo -n "\\\$i:"; done) server.Server -t && cd -"
 alias cejava="cjava && ejava"
 EOF
 

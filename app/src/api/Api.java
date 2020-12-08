@@ -1,88 +1,70 @@
 package api;
 
+import java.io.StringWriter;
 import java.sql.Date;
 import java.sql.SQLException;
+
 import java.util.List;
 import java.util.Iterator;
 
 import org.json.JSONObject;
 import org.json.JSONArray;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+
+import org.w3c.dom.Attr;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 import dao.*;
 import model.*;
 
 public class Api {
 
-    public String getActors() {
+    public String getActors(String format) {
         ActorDAO actorDao = new ActorDAO();
         List<Actor> actors = actorDao.getAll();
 
-        JSONArray results = new JSONArray();
-        JSONObject result = new JSONObject();
-
-        for (Actor actor : actors) {
-            JSONObject my_obj = new JSONObject();
-            my_obj.put("id", actor.getId());
-            my_obj.put("name", actor.getName());
-            my_obj.put("birth_date", actor.getBirth_date());
-            results.put(my_obj);
-        }
-        result.put("results", results);
-
-        actorDao = null;
-        actors = null;
-        results = null;
-
-        return result.toString();
+        if (format == "json")
+            return actorDao.getActorsJSON(actors);
+        else
+            return actorDao.getActorsXML(actors);
     }
 
-    public String getActors(int id) {
+    public String getActors(int id, String format) {
         ActorDAO actorDao = new ActorDAO();
         Actor actor = actorDao.getOne(id);
 
-        JSONArray results = new JSONArray();
-        JSONObject result = new JSONObject();
-        JSONObject my_obj = new JSONObject();
-
-        my_obj.put("id", actor.getId());
-        my_obj.put("name", actor.getName());
-        my_obj.put("birth_date", actor.getBirth_date());
-        results.put(my_obj);
-        result.put("results", results);
-
-        actorDao = null;
-        actor = null;
-        results = null;
-        my_obj = null;
-
-        return result.toString();
+        if (format == "json")
+            return actorDao.getActorJSON(actor);
+        else
+            return actorDao.getActorXML(actor);
     }
 
-    public String deleteActor(int id) {
+    public String deleteActor(int id, String format) {
         ActorDAO actorDao = new ActorDAO();
         Actor actor = actorDao.getOne(id);
 
-        JSONArray results = new JSONArray();
-        JSONObject result = new JSONObject();
-        JSONObject my_obj = new JSONObject();
+        String result;
 
-        my_obj.put("id", actor.getId());
-        my_obj.put("name", actor.getName());
-        my_obj.put("birth_date", actor.getBirth_date());
-        results.put(my_obj);
-        result.put("results", results);
+        if (format == "json")
+            result = actorDao.getActorJSON(actor);
+        else
+            result = actorDao.getActorXML(actor);
 
         actorDao.remove(actor);
 
-        actorDao = null;
-        actor = null;
-        results = null;
-        my_obj = null;
-
-        return result.toString();
+        return result;
     }
 
-    public String insertActor(String body) throws SQLException {
+    public String insertActor(String body, String format) throws SQLException {
         Actor actor = new Actor();
 
         JSONObject my_obj = new JSONObject(body);
@@ -117,10 +99,10 @@ public class Api {
         my_obj = null;
         keys = null;
 
-        return getActors(id_actor);
+        return getActors(id_actor, format);
     }
 
-    public String updateActor(int id, String body) throws SQLException {
+    public String updateActor(int id, String body, String format) throws SQLException {
         ActorDAO actorDao = new ActorDAO();
         Actor actor = actorDao.getOne(id);
 
@@ -150,10 +132,10 @@ public class Api {
         my_obj = null;
         keys = null;
 
-        return getActors(id);
+        return getActors(id, format);
     }
 
-    public String searchActor(String body) {
+    public String searchActor(String body, String format) {
         ActorDAO actorDao = new ActorDAO();
 
         JSONObject my_obj = new JSONObject(body);
@@ -188,97 +170,48 @@ public class Api {
 
         List<Actor> actors = actorDao.getCustom(search_name, IBirth_date, FBirth_date);
 
-        JSONArray results = new JSONArray();
-        JSONObject result = new JSONObject();
-
-        for (Actor actor : actors) {
-            JSONObject my_obj_r = new JSONObject();
-            my_obj_r.put("id", actor.getId());
-            my_obj_r.put("name", actor.getName());
-            my_obj_r.put("birth_date", actor.getBirth_date());
-            results.put(my_obj_r);
-        }
-        result.put("results", results);
-
-        actorDao = null;
-        actors = null;
-        keys = null;
-        my_obj = null;
-        results = null;
-
-        return result.toString();
+        if (format == "json")
+            return actorDao.getActorsJSON(actors);
+        else
+            return actorDao.getActorsXML(actors);
     }
 
-    public String getMovies() {
+    public String getMovies(String format) {
         MovieDAO movieDao = new MovieDAO();
         List<Movie> movies = movieDao.getAll();
 
-        JSONArray results = new JSONArray();
-        JSONObject result = new JSONObject();
-
-        for (Movie movie : movies) {
-            JSONObject my_obj = new JSONObject();
-            my_obj.put("id", movie.getId());
-            my_obj.put("title", movie.getTitle());
-            my_obj.put("synopsis", movie.getSynopsis());
-            results.put(my_obj);
-        }
-        result.put("results", results);
-
-        movieDao = null;
-        movies = null;
-        results = null;
-
-        return result.toString();
+        if (format == "json")
+            return movieDao.getMoviesJSON(movies);
+        else
+            return movieDao.getMoviesXML(movies);
     }
 
-    public String getMovies(int id) {
+    public String getMovies(int id, String format) {
         MovieDAO movieDao = new MovieDAO();
         Movie movie = movieDao.getOne(id);
 
-        JSONArray results = new JSONArray();
-        JSONObject result = new JSONObject();
-        JSONObject my_obj = new JSONObject();
-
-        my_obj.put("id", movie.getId());
-        my_obj.put("title", movie.getTitle());
-        my_obj.put("synopsis", movie.getSynopsis());
-        results.put(my_obj);
-        result.put("results", results);
-
-        movieDao = null;
-        movie = null;
-        results = null;
-        my_obj = null;
-
-        return result.toString();
+        if (format == "json")
+            return movieDao.getMovieJSON(movie);
+        else
+            return movieDao.getMovieXML(movie);
     }
 
-    public String deleteMovie(int id) {
+    public String deleteMovie(int id, String format) {
         MovieDAO movieDao = new MovieDAO();
         Movie movie = movieDao.getOne(id);
 
-        JSONArray results = new JSONArray();
-        JSONObject result = new JSONObject();
-        JSONObject my_obj = new JSONObject();
-
-        my_obj.put("id", movie.getId());
-        my_obj.put("title", movie.getTitle());
-        my_obj.put("synopsis", movie.getSynopsis());
-        results.put(my_obj);
-        result.put("results", results);
+        String result;
+        if (format == "json")
+            result = movieDao.getMovieJSON(movie);
+        else
+            result = movieDao.getMovieXML(movie);
 
         movieDao.remove(movie);
 
-        movieDao = null;
-        movie = null;
-        results = null;
-        my_obj = null;
-
-        return result.toString();
+        return result;
     }
 
-    public String insertMovie(String body) throws SQLException {
+    public String insertMovie(String body, String format) throws SQLException {
         Movie movie = new Movie();
 
         JSONObject my_obj = new JSONObject(body);
@@ -314,10 +247,10 @@ public class Api {
         my_obj = null;
         keys = null;
 
-        return getMovies(id_movie);
+        return getMovies(id_movie, format);
     }
 
-    public String updateMovie(int id, String body) throws SQLException {
+    public String updateMovie(int id, String body, String format) throws SQLException {
         MovieDAO movieDao = new MovieDAO();
         Movie movie = movieDao.getOne(id);
 
@@ -348,10 +281,10 @@ public class Api {
         my_obj = null;
         keys = null;
 
-        return getMovies(id);
+        return getMovies(id, format);
     }
 
-    public String searchMovie(String body) {
+    public String searchMovie(String body, String format) {
         MovieDAO movieDao = new MovieDAO();
 
         JSONObject my_obj = new JSONObject(body);
@@ -375,70 +308,105 @@ public class Api {
 
         List<Movie> movies = movieDao.getCustom(search_title, search_synopsis);
 
-        JSONArray results = new JSONArray();
-        JSONObject result = new JSONObject();
-
-        for (Movie movie : movies) {
-            JSONObject my_obj_r = new JSONObject();
-            my_obj_r.put("id", movie.getId());
-            my_obj_r.put("title", movie.getTitle());
-            my_obj_r.put("synopsis", movie.getSynopsis());
-            results.put(my_obj_r);
-        }
-        result.put("results", results);
-
-        movieDao = null;
-        movies = null;
-        my_obj = null;
-        results = null;
-
-        return result.toString();
+        if (format == "json")
+            return movieDao.getMoviesJSON(movies);
+        else
+            return movieDao.getMoviesXML(movies);
     }
 
-    public String getMovieActors(int id) {
+    public String getMovieActors(int id, String format) {
         MovieDAO movieDao = new MovieDAO();
         Movie movie = movieDao.getOne(id);
-
-        JSONObject movies = new JSONObject();
-        JSONArray results_movie = new JSONArray();
-        JSONArray results_actors = new JSONArray();
-        JSONObject result_final = new JSONObject();
-        
-        movies.put("id", movie.getId());
-        movies.put("title", movie.getTitle());
-        movies.put("synopsis", movie.getSynopsis());
-        
         MovieActorDAO maDao = new MovieActorDAO();
-        List<MovieActor> mas = maDao.searchMovieActors(id);
-        
         ActorDAO actorDao = new ActorDAO();
-        
-        for (MovieActor ma : mas) {
-            JSONObject actors = new JSONObject();
-            Actor actor = actorDao.getOne(ma.getActorid());
-            
-            actors.put("id", actor.getId());
-            actors.put("name", actor.getName());
-            actors.put("birth_date", actor.getBirth_date());
-            
-            results_actors.put(actors);
+        List<MovieActor> mas = maDao.searchMovieActors(id);
+        try {
+            if (format == "json") {
+                JSONObject movies = new JSONObject();
+                JSONArray results_movie = new JSONArray();
+                JSONArray results_actors = new JSONArray();
+                JSONObject result_final = new JSONObject();
+
+                movies.put("id", movie.getId());
+                movies.put("title", movie.getTitle());
+                movies.put("synopsis", movie.getSynopsis());
+
+                for (MovieActor ma : mas) {
+                    JSONObject actors = new JSONObject();
+                    Actor actor = actorDao.getOne(ma.getActorid());
+
+                    actors.put("id", actor.getId());
+                    actors.put("name", actor.getName());
+                    actors.put("birth_date", actor.getBirth_date());
+
+                    results_actors.put(actors);
+                }
+                movies.put("actors", results_actors);
+                results_movie.put(movies);
+                result_final.put("results", results_movie);
+
+                return result_final.toString();
+            } else {
+                DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+                DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+                Document doc = docBuilder.newDocument();
+
+                Element rootElement = doc.createElement("movie_actors");
+                doc.appendChild(rootElement);
+
+                Element el_movie = doc.createElement("movie");
+                rootElement.appendChild(el_movie);
+
+                Attr attr_id = doc.createAttribute("id");
+                attr_id.setValue(String.valueOf(movie.getId()));
+                el_movie.setAttributeNode(attr_id);
+
+                Element el_title = doc.createElement("title");
+                el_title.appendChild(doc.createTextNode(movie.getTitle() != null ? movie.getTitle() : "null"));
+                el_movie.appendChild(el_title);
+
+                Element el_synopsis = doc.createElement("synopsis");
+                el_synopsis.appendChild(
+                        doc.createTextNode(movie.getSynopsis() != null ? movie.getSynopsis().toString() : "null"));
+                el_movie.appendChild(el_synopsis);
+
+                Element el_actors = doc.createElement("actors");
+                el_movie.appendChild(el_actors);
+
+                for (MovieActor ma : mas) {
+                    Actor actor = actorDao.getOne(ma.getActorid());
+
+                    Element el_actor = doc.createElement("actor");
+                    el_actors.appendChild(el_actor);
+
+                    Attr id_actor = doc.createAttribute("id");
+                    id_actor.setValue(String.valueOf(actor.getId()));
+                    el_actor.setAttributeNode(id_actor);
+
+                    Element el_name = doc.createElement("name");
+                    el_name.appendChild(doc.createTextNode(actor.getName() != null ? actor.getName() : "null"));
+                    el_actor.appendChild(el_name);
+
+                    Element el_birth_date = doc.createElement("birth_date");
+                    el_birth_date.appendChild(doc
+                            .createTextNode(actor.getBirth_date() != null ? actor.getBirth_date().toString() : "null"));
+                    el_actor.appendChild(el_birth_date);
+                }
+
+                TransformerFactory transformerFactory = TransformerFactory.newInstance();
+                Transformer transformer = transformerFactory.newTransformer();
+                DOMSource source = new DOMSource(doc);
+                StringWriter writer = new StringWriter();
+
+                transformer.transform(source, new StreamResult(writer));
+
+                return writer.getBuffer().toString();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
         }
-        movies.put("actors", results_actors);
-        results_movie.put(movies);
-        result_final.put("results", results_movie);
-        
-        movieDao = null;
-        movie = null;
-        movies = null;
-        results_movie = null;
-
-        maDao = null;
-        mas = null;
-
-        actorDao = null;
-        results_actors = null;
-
-        return result_final.toString();
     }
 
 }

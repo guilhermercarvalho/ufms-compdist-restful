@@ -7,17 +7,19 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+
 import java.net.Socket;
 import java.net.SocketTimeoutException;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import api.Api;
 
@@ -96,76 +98,184 @@ public class ClientHandler implements Runnable {
                 // API Functionalities
                 if (path.contains("/actors") || path.contains("/movies")) {
                     Api api = new Api();
+                    String data;
+                    String application;
+                    int id_search;
                     switch (method) {
                         case "GET":
-                            if (path.equals("/actors") && body.length() == 0) {
-                                String json = api.getActors();
-                                sendResponse("200 Document Follows", "application/json; charset=utf-8",
-                                        json.getBytes());
-                            } else if (path.equals("/actors") && body.length() > 0) {
-                                String json = api.searchActor(body);
-                                sendResponse("200 Document Follows", "application/json; charset=utf-8",
-                                        json.getBytes());
-                            } else if (path.matches("/actors/\\d*")) {
-                                int id_actor = Integer.parseInt(path.split("/actors/")[1]);
-                                String json = api.getActors(id_actor);
-                                sendResponse("200 Document Follows", "application/json; charset=utf-8",
-                                        json.getBytes());
-                            } else if (path.equals("/movies") && body.length() == 0) {
-                                String json = api.getMovies();
-                                sendResponse("200 Document Follows", "application/json; charset=utf-8",
-                                        json.getBytes());
-                            } else if (path.equals("/movies") && body.length() > 0) {
-                                String json = api.searchMovie(body);
-                                sendResponse("200 Document Follows", "application/json; charset=utf-8",
-                                        json.getBytes());
-                            } else if (path.matches("/movies/\\d*")) {
-                                int id_movie = Integer.parseInt(path.split("/movies/")[1]);
-                                String json = api.getMovies(id_movie);
-                                sendResponse("200 Document Follows", "application/json; charset=utf-8",
-                                        json.getBytes());
-                            } else if (path.matches("/movies/\\d*/actors")) {
-                                int id_movie = Integer.parseInt(path.split("/movies/")[1].split("/actors")[0]);
-                                String json = api.getMovieActors(id_movie);
-                                sendResponse("200 Document Follows", "application/json; charset=utf-8",
-                                        json.getBytes());
+                            // Return Actors
+                            if ((path.equals("/actors.json") || path.equals("/actors.xml")) && body.length() == 0) {
+                                if (path.contains("json")) {
+                                    data = api.getActors("json");
+                                    application = "application/json";
+                                } else {
+                                    data = api.getActors("xml");
+                                    application = "application/xml";
+                                }
+
+                                sendResponse("200 Document Follows", application + "; charset=utf-8", data.getBytes());
+
+                                // Return Actors Search
+                            } else if ((path.equals("/actors.json") || path.equals("/actors.xml"))
+                                    && body.length() > 0) {
+                                if (path.contains("json")) {
+                                    data = api.searchActor(body, "json");
+                                    application = "application/json";
+                                } else {
+                                    data = api.searchActor(body, "xml");
+                                    application = "application/xml";
+                                }
+
+                                sendResponse("200 Document Follows", application + "; charset=utf-8", data.getBytes());
+
+                                // Return Actor with ID
+                            } else if (path.matches("/actors/\\d*\\.json") || path.matches("/actors/\\d*\\.xml")) {
+                                id_search = Integer.parseInt(path.split("/actors/")[1].split("\\.")[0]);
+
+                                if (path.contains("json")) {
+                                    data = api.getActors(id_search, "json");
+                                    application = "application/json";
+                                } else {
+                                    data = api.getActors(id_search, "xml");
+                                    application = "application/xml";
+                                }
+
+                                sendResponse("200 Document Follows", application + "; charset=utf-8", data.getBytes());
+
+                                // Return Movies
+                            } else if ((path.equals("/movies.json") || path.equals("/movies.xml"))
+                                    && body.length() == 0) {
+                                if (path.contains("json")) {
+                                    data = api.getMovies("json");
+                                    application = "application/json";
+                                } else {
+                                    data = api.getMovies("xml");
+                                    application = "application/xml";
+                                }
+
+                                sendResponse("200 Document Follows", application + "; charset=utf-8", data.getBytes());
+
+                                // Return Movies Search
+                            } else if ((path.equals("/movies.json") || path.equals("/movies.xml"))
+                                    && body.length() > 0) {
+                                if (path.contains("json")) {
+                                    data = api.searchMovie(body, "json");
+                                    application = "application/json";
+                                } else {
+                                    data = api.searchMovie(body, "xml");
+                                    application = "application/xml";
+                                }
+                                sendResponse("200 Document Follows", application + "; charset=utf-8", data.getBytes());
+
+                                // Return Movie with ID
+                            } else if (path.matches("/movies/\\d*\\.json") || path.matches("/movies/\\d*\\.xml")) {
+                                id_search = Integer.parseInt(path.split("/movies/")[1].split("\\.")[0]);
+                                
+                                if (path.contains("json")) {
+                                    data = api.getMovies(id_search, "json");
+                                    application = "application/json";
+                                } else {
+                                    data = api.getMovies(id_search, "xml");
+                                    application = "application/xml";
+                                }
+                                sendResponse("200 Document Follows", application + "; charset=utf-8", data.getBytes());
+
+                                // Return Actors from a Movie
+                            } else if (path.matches("/movies/\\d*/actors.json") || path.matches("/movies/\\d*/actors.xml")) {
+                                id_search = Integer.parseInt(path.split("/movies/")[1].split("/actors")[0].split("\\.")[0]);
+                                
+                                if (path.contains("json")) {
+                                    data = api.getMovieActors(id_search, "json");
+                                    application = "application/json";
+                                } else {
+                                    data = api.getMovieActors(id_search, "xml");
+                                    application = "application/xml";
+                                }
+
+                                sendResponse("200 Document Follows", application + "; charset=utf-8", data.getBytes());
                             }
                             break;
                         case "POST":
-                            if (path.equals("/actors")) {
-                                String json = api.insertActor(body);
-                                sendResponse("200 Document Follows", "application/json; charset=utf-8",
-                                        json.getBytes());
-                            } else if (path.equals("/movies")) {
-                                String json = api.insertMovie(body);
-                                sendResponse("200 Document Follows", "application/json; charset=utf-8",
-                                        json.getBytes());
+                            // Insert Actor
+                            if (path.equals("/actors.json") || path.equals("/actors.xml")) {
+                                if (path.contains("json")) {
+                                    data = api.insertActor(body, "json");
+                                    application = "application/json";
+                                } else {
+                                    data = api.insertActor(body, "xml");
+                                    application = "application/xml";
+                                }
+                                sendResponse("200 Document Follows", application + "; charset=utf-8", data.getBytes());
+
+                                // Insert Movie
+                            } else if (path.equals("/movies.json") || path.equals("/movies.xml")) {
+                                if (path.contains("json")) {
+                                    data = api.insertMovie(body, "json");
+                                    application = "application/json";
+                                } else {
+                                    data = api.insertMovie(body, "xml");
+                                    application = "application/xml";
+                                }
+                                sendResponse("200 Document Follows", application + "; charset=utf-8", data.getBytes());
                             }
                             break;
                         case "PUT":
-                            if (path.matches("/actors/\\d*")) {
-                                int id_actor = Integer.parseInt(path.split("/actors/")[1]);
-                                String json = api.updateActor(id_actor, body);
-                                sendResponse("200 Document Follows", "application/json; charset=utf-8",
-                                        json.getBytes());
-                            } else if (path.matches("/movies/\\d*")) {
-                                int id_movie = Integer.parseInt(path.split("/movies/")[1]);
-                                String json = api.updateMovie(id_movie, body);
-                                sendResponse("200 Document Follows", "application/json; charset=utf-8",
-                                        json.getBytes());
+                            // Update Actor
+                            if (path.matches("/actors/\\d*\\.json") || path.matches("/actors/\\d*\\.xml")) {
+                                id_search = Integer.parseInt(path.split("/actors/")[1].split("\\.")[0]);
+
+                                if (path.contains("json")) {
+                                    data = api.updateActor(id_search, body, "json");
+                                    application = "application/json";
+                                } else {
+                                    data = api.updateActor(id_search, body, "xml");
+                                    application = "application/xml";
+                                }
+
+                                sendResponse("200 Document Follows", application + "; charset=utf-8", data.getBytes());
+
+                                // Update Movie
+                            } else if (path.matches("/movies/\\d*\\.json") || path.matches("/movies/\\d*\\.xml")) {
+                                id_search = Integer.parseInt(path.split("/movies/")[1].split("\\.")[0]);
+
+                                if (path.contains("json")) {
+                                    data = api.updateMovie(id_search, body, "json");
+                                    application = "application/json";
+                                } else {
+                                    data = api.updateMovie(id_search, body, "xml");
+                                    application = "application/xml";
+                                }
+
+                                sendResponse("200 Document Follows", application + "; charset=utf-8", data.getBytes());
+
                             }
                             break;
                         case "DELETE":
-                            if (path.matches("/actors/\\d*")) {
-                                int id_actor = Integer.parseInt(path.split("/actors/")[1]);
-                                String json = api.deleteActor(id_actor);
-                                sendResponse("200 Document Follows", "application/json; charset=utf-8",
-                                        json.getBytes());
-                            } else if (path.matches("/movies/\\d*")) {
-                                int id_movie = Integer.parseInt(path.split("/movies/")[1]);
-                                String json = api.deleteMovie(id_movie);
-                                sendResponse("200 Document Follows", "application/json; charset=utf-8",
-                                        json.getBytes());
+                            // Remove Actor
+                            if (path.matches("/actors/\\d*\\.json") || path.matches("/actors/\\d*\\.xml")) {
+                                id_search = Integer.parseInt(path.split("/actors/")[1].split("\\.")[0]);
+                                System.out.println(id_search);
+                                if (path.contains("json")) {
+                                    data = api.deleteActor(id_search, "json");
+                                    application = "application/json";
+                                } else {
+                                    data = api.deleteActor(id_search, "xml");
+                                    application = "application/xml";
+                                }
+                                sendResponse("200 Document Follows", application + "; charset=utf-8", data.getBytes());
+
+                                // Remove Movie
+                            } else if (path.matches("/movies/\\d*\\.json") || path.matches("/movies/\\d*\\.xml")) {
+                                id_search = Integer.parseInt(path.split("/movies/")[1].split("\\.")[0]);
+
+                                if (path.contains("json")) {
+                                    data = api.deleteMovie(id_search, "json");
+                                    application = "application/json";
+                                } else {
+                                    data = api.deleteMovie(id_search, "xml");
+                                    application = "application/xml";
+                                }
+                                sendResponse("200 Document Follows", application + "; charset=utf-8", data.getBytes());
                             }
                             break;
                         default:
