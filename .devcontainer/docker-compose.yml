@@ -9,9 +9,9 @@ services:
       args:
         # [Choice] Java version: 11, 14
         VARIANT: 14
-        INSTALL_MAVEN: "true"
+        INSTALL_MAVEN: "false"
         INSTALL_GRADLE: "false"
-        INSTALL_NODE: "true"
+        INSTALL_NODE: "false"
         NODE_VERSION: "lts/*"
         # On Linux, you may need to update USER_UID and USER_GID below if not your local UID is not 1000.
         USER_UID: 1000
@@ -43,13 +43,3 @@ services:
 
     # Add "forwardPorts": ["5432"] to **devcontainer.json** to forward MongoDB locally.
     # (Adding the "ports" property to this file will not forward from a Codespace.)
-
-  db-manager:
-    container_name: dev-db-manager
-    image: dpage/pgadmin4:latest
-    environment:
-      PGADMIN_DEFAULT_EMAIL: pgadmin4@pgadmin.org
-      PGADMIN_DEFAULT_PASSWORD: pgadmin4
-    depends_on: 
-      - db
-    restart: unless-stopped
